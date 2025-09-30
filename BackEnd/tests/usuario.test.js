@@ -1,16 +1,18 @@
 const request = require("supertest")
 const app = require("../app")
-const { PrismaClient } = require("@prisma/client")
 
-const client = new PrismaClient()
+//const { PrismaClient } = require("@prisma/client")
+//const client = new PrismaClient()
+//test("Resetar tabela de usuários", async () => {
+  //await client.usuario.deleteMany()
+  //expect(true).toBe(true) 
+//})
+
 
 let tokenCliente
 let tokenAdmin
 
-test("Resetar tabela de usuários", async () => {
-  await client.usuario.deleteMany()
-  expect(true).toBe(true) 
-})
+
 
 test("Cadastrar cliente", async () => {
   const res = await request(app)
