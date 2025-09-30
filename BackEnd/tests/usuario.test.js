@@ -1,12 +1,12 @@
 const request = require("supertest")
 const app = require("../app")
 
-//const { PrismaClient } = require("@prisma/client")
-//const client = new PrismaClient()
-//test("Resetar tabela de usuários", async () => {
-  //await client.usuario.deleteMany()
-  //expect(true).toBe(true) 
-//})
+const { PrismaClient } = require("@prisma/client")
+const client = new PrismaClient()
+test("Resetar tabela de usuários", async () => {
+  await client.usuario.deleteMany()
+  expect(true).toBe(true) 
+})
 
 
 let tokenCliente
@@ -21,7 +21,6 @@ test("Cadastrar cliente", async () => {
       nome: "Cliente Teste",
       email: "cliente@example.com",
       password: "123456",
-      tipo: "cliente"
     })
 
   expect(res.status).toBe(200)

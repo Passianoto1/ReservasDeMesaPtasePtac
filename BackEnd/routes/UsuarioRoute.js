@@ -6,6 +6,8 @@ router.post("/cadastro", UsuarioController.cadastrar);
 
 router.post("/login", UsuarioController.login)
 
+router.get("/home", UsuarioController.paginaHome);
+
 router.get("/areaAdmin", UsuarioController.verificaAutenticacao, UsuarioController.verificaIsAdmin, UsuarioController.testeAdmin);
 
 module.exports = router

@@ -103,6 +103,11 @@ class UsuarioController {
       msg: "Você é um Admin"
     })
   }
+  static paginaHome(req, res) {
+    res.json({
+      msg: "Você está na pagina Home"
+    })
+  }
 }
 
 module.exports = UsuarioController;
