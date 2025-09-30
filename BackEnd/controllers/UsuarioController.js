@@ -5,62 +5,63 @@ const jwt = require("jsonwebtoken")
 const { PrismaClient } = require("@prisma/client");
 const client = new PrismaClient()
 
-class UsuarioController{
-     static async cadastrar(req,res) {
-        const {nome, email, password, tipo} = req.body
+class UsuarioController {
+  static async cadastrar(req, res) {
+    const { nome, email, password, tipo } = req.body
 
-        const salt = bcryptjs.genSaltSync(8)
-        const hashSenha = bcryptjs.hashSync(password, salt)
-        
-       const usuario = await client.usuario.create({
-        data:{
-          nome, 
-          email,
-          password: hashSenha,
-          tipo: "cliente"
-        },})
+    const salt = bcryptjs.genSaltSync(8)
+    const hashSenha = bcryptjs.hashSync(password, salt)
 
-        res.json({
-            usuarioId: usuario.id,
-        });
+    const usuario = await client.usuario.create({
+      data: {
+        nome,
+        email,
+        password: hashSenha,
+        tipo: tipo || "cliente"
+      }
+    })
+
+    res.json({
+      usuarioId: usuario.id,
+    });
+  }
+
+  static async login(req, res) {
+    const { email, password } = req.body;
+    //verificar se o usuario existe
+    const usuario = await client.usuario.findUnique({
+      where: {
+        email: email,
+      },
+    })
+    if (!usuario) {
+      return res.json({
+        msg: "Usuário não encontrado!",
+      })
     }
-
-     static async login(req, res){
-      const {email, password} = req.body;
-      //verificar se o usuario existe
-      const usuario = await client.usuario.findUnique({
-        where: {
-          email: email,
-        },
-      })
-      if(!usuario){
-        return res.json({
-          msg: "Usuário não encontrado!",
-      })
-    } 
     //verificar se a senha esta correta
     const senhaCorreta = bcryptjs.compareSync(password, usuario.password)
-    if(!senhaCorreta){
-      return res.josn({msg: "Senha Incorreta!"}) 
+    if (!senhaCorreta) {
+      return res.json({ msg: "Senha Incorreta!" })
     }
     //emitir um token
-    const token = jwt.sign({id: usuario.id}, process.env.SENHA_SERVIDOR, {expiresIn: "2h"})
+    const token = jwt.sign({ id: usuario.id }, process.env.SENHA_SERVIDOR, { expiresIn: "2h" })
     res.json({
       msg: "Autenticado!",
       token: token,
     });
   }
 
-  static async verificaAutenticacao(req, res, next){
+  static async verificaAutenticacao(req, res, next) {
     const authHeader = req.headers["authorization"]
-    if(authHeader){
+    if (authHeader) {
 
       const token = authHeader.split(" ")[1]
 
-      jwt.verify(token, process.env.SENHA_SERVIDOR, (err, payload) =>{
-        if (err){
+      jwt.verify(token, process.env.SENHA_SERVIDOR, (err, payload) => {
+        if (err) {
           return res.json({
-            msg:"token invalido!",
+            msg: "token invalido!",
           })
         }
 
@@ -68,15 +69,15 @@ class UsuarioController{
         next()
       })
 
-    }else{
-     return res.json({
-      msg: "token não encontrado",
-    })
-  }
+    } else {
+      return res.json({
+        msg: "token não encontrado",
+      })
+    }
   }
 
-  static async verificaIsAdmin(req, res, next){
-    if(!req.usuarioId){
+  static async verificaIsAdmin(req, res, next) {
+    if (!req.usuarioId) {
       return res.json({
         msg: "você não está autenticado"
       })
@@ -88,7 +89,7 @@ class UsuarioController{
       }
     })
 
-    if(usuario.tipo == "usuario"){
+    if (usuario.tipo !== "admin") {
       return res.json({
         msg: "Acesso negado, você não é um administrador"
       })
@@ -97,10 +98,10 @@ class UsuarioController{
     next()
 
   }
-  static testeAdmin(req,res){
-  res.json({
-          msg: "Você é um Adimin"
-      })
+  static testeAdmin(req, res) {
+    res.json({
+      msg: "Você é um Admin"
+    })
   }
 }
 
