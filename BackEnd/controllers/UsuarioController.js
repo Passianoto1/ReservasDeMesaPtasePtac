@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken")
 const { PrismaClient } = require("@prisma/client");
 const client = new PrismaClient()
 
+
 class UsuarioController {
   static async cadastrar(req, res) {
     try{ 
@@ -21,7 +22,7 @@ class UsuarioController {
         tipo: tipo || "cliente"
       }
     })
-
+    
     res.json({
        mensagem: "Exito ao cadastrar!",
        erro: false,
@@ -118,12 +119,14 @@ class UsuarioController {
   }
   static testeAdmin(req, res) {
     res.json({
-      mensagem: "Você é um Admin"
+      mensagem: "Você é um Admin",
+      erro: false
     })
   }
   static paginaHome(req, res) {
     res.json({
-      mensagem: "Você está na pagina Home"
+      mensagem: "Você está na pagina Home",
+       erro: false
     })
   }
 }
