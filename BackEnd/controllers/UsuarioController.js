@@ -8,33 +8,36 @@ const client = new PrismaClient()
 
 class UsuarioController {
   static async cadastrar(req, res) {
-    try{ 
-    const { nome, email, password, tipo } = req.body
+    try {
+      const { nome, email, password, tipo } = req.body
 
-    const salt = bcryptjs.genSaltSync(8)
-    const hashSenha = bcryptjs.hashSync(password, salt)
+      const salt = bcryptjs.genSaltSync(8)
+      const hashSenha = bcryptjs.hashSync(password, salt)
 
-    const usuario = await client.usuario.create({
-      data: {
-        nome,
-        email,
-        password: hashSenha,
-        tipo: tipo || "cliente"
-      }
-    })
-    
-    res.json({
-       mensagem: "Exito ao cadastrar!",
-       erro: false,
-    });
-  } catch(err){
-    res.json({
-       mensagem: "Erro ao cadastrar!",
-       erro: true,
-       mensademDeErro: err
-    })
+      const usuario = await client.usuario.create({
+        data: {
+          nome,
+          email,
+          password: hashSenha,
+          tipo: tipo || "cliente"
+        }
+      })
+
+      const token = jwt.sign({ id: usuario.id }, process.env.SENHA_SERVIDOR, { expiresIn: "2h" })
+
+      res.json({
+        mensagem: "Exito ao cadastrar!",
+        erro: false,
+        token: token
+      });
+    } catch (err) {
+      res.json({
+        mensagem: "Erro ao cadastrar!",
+        erro: true,
+        mensademDeErro: err
+      })
+    }
   }
-}
 
   static async login(req, res) {
     const { email, password } = req.body;
@@ -46,16 +49,16 @@ class UsuarioController {
     })
     if (!usuario) {
       return res.json({
-       mensagem: "Usuario não encontrado",
-       erro: true
+        mensagem: "Usuario não encontrado",
+        erro: true
       })
     }
     //verificar se a senha esta correta
     const senhaCorreta = bcryptjs.compareSync(password, usuario.password)
     if (!senhaCorreta) {
       return res.json({
-       mensagem: "Senha Incorreta",
-       erro: true
+        mensagem: "Senha Incorreta",
+        erro: true
       })
     }
     //emitir um token
@@ -126,9 +129,75 @@ class UsuarioController {
   static paginaHome(req, res) {
     res.json({
       mensagem: "Você está na pagina Home",
-       erro: false
+      erro: false
     })
   }
+  static async verMeuPerfil(req, res) {
+    try {
+      const procurarUsuario = await client.usuario.findUnique({
+        where: {
+          id: req.usuarioId
+        }
+      })
+
+      res.json({
+        mensagem: "Usuario encontrado com Exito",
+        erro: false,
+        usuario: {
+          nome: procurarUsuario.nome,
+          email: procurarUsuario.email,
+          tipo: procurarUsuario.tipo
+        }
+      })
+    } catch (err) {
+      res.json({
+        mensagem: "Usuario não encontrado",
+        erro: true,
+        mensademDeErro: err
+      })
+    }
+  }
+  static async atualizarMeuPerfil(req, res) {
+  try {
+    const { nome, email } = req.body;
+
+   
+    if (!nome && !email) {
+      return res.json({
+        mensagem: "Envie pelo menos um campo para atualizar (nome ou email)",
+        erro: true,
+      });
+    }
+
+   
+    const usuarioAtualizado = await client.usuario.update({
+      where: { id: req.usuarioId },
+      data: {
+        nome: nome || undefined,
+        email: email || undefined,
+      },
+      select: {
+        id: true,
+        nome: true,
+        email: true,
+        tipo: true,
+      },
+    });
+
+    return res.json({
+      mensagem: "Perfil atualizado com sucesso!",
+      erro: false,
+      usuario: usuarioAtualizado,
+    });
+  } catch (err) {
+    console.error("Erro ao atualizar perfil:", err);
+    return res.json({
+      mensagem: "Erro ao atualizar perfil",
+      erro: true,
+      mensagemDeErro: err.message,
+    });
+  }
+}
 }
 
 module.exports = UsuarioController;

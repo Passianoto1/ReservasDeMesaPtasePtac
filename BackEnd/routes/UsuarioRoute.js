@@ -10,4 +10,8 @@ router.get("/home", UsuarioController.paginaHome);
 
 router.get("/areaAdmin", UsuarioController.verificaAutenticacao, UsuarioController.verificaIsAdmin, UsuarioController.testeAdmin);
 
+router.get("/perfil", UsuarioController.verificaAutenticacao, UsuarioController.verMeuPerfil)
+
+router.patch("/perfil", UsuarioController.verificaAutenticacao, UsuarioController.atualizarMeuPerfil)
+
 module.exports = router
