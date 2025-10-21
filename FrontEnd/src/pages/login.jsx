@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import "../css/Login.module.css";
-
+import styles from "../css/Login.module.css";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -12,21 +11,19 @@ export default function Login() {
     try {
        const res = await fetch('http://localhost:3000/usuarios/login', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
 
       const data = await res.json();
 
       if (res.ok) {
-      localStorage.setItem('token', data.token);
+        localStorage.setItem('token', data.token);
         setMessage(`Login sucesso!`);
-
       } else {
         setMessage(data.message || 'Erro no login');
       }
+
       console.log("Login:", { email, password });
       alert("Login enviado (simulação).");
     } catch (err) {
@@ -35,7 +32,7 @@ export default function Login() {
   }
 
   return (
-    <div className="login-container">
+    <div className={styles["login-container"]}>
       <h2>Login</h2>
       <form onSubmit={loginUser}>
         <input
@@ -56,6 +53,7 @@ export default function Login() {
 
         <button type="submit">Entrar</button>
       </form>
+      {message && <p>{message}</p>}
     </div>
   );
 }
