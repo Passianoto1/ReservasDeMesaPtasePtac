@@ -1,10 +1,10 @@
 import React from "react";
-import "../css/Home.module.css";
+import styles from "../css/Home.module.css";
 
 
 export default function Home() {
   return (
-    <div className="home-container">
+    <div className={styles["home-container"]}>
       <h1>ReservaFácil 🍽️</h1>
       <p>Bem-vindo ao seu sistema de reserva de mesas!</p>
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "../css/CadastroPessoa.module.css"; // Corrigido
+import styles from "../css/CadastroPessoa.module.css"; 
 
 export default function Cadastro() {
   const [nome, setNome] = useState("");
