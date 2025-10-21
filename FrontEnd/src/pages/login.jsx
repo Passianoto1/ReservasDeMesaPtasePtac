@@ -5,17 +5,32 @@ import "../css/Login.module.css";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+    const [message, setMessage] = useState('');
 
   async function loginUser(e) {
     e.preventDefault();
-
-    // 🔹 placeholder - será integrado ao backend depois
     try {
-      // const res = await api.post("/login", { email, password });
+       const res = await fetch('http://localhost:3000/usuarios/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+      localStorage.setItem('token', data.token);
+        setMessage(`Login sucesso!`);
+
+      } else {
+        setMessage(data.message || 'Erro no login');
+      }
       console.log("Login:", { email, password });
       alert("Login enviado (simulação).");
     } catch (err) {
-      alert("Erro ao fazer login.");
+      alert("Erro ao fazer login." + err);
     }
   }
 
