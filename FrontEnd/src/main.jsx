@@ -5,7 +5,7 @@ import App from './App.jsx'
 import Home from './pages/Home.jsx';
 import CadastroPessoa from './pages/CadastroPessoa.jsx';
 import Login from './pages/Login.jsx';
-import ConsultarMesas from './pages/CadastroPessoa.jsx'
+import ConsultarMesas from './pages/ConsultarMesas.jsx'
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 
