@@ -5,12 +5,8 @@ import App from './App.jsx'
 import Home from './pages/Home.jsx';
 import CadastroPessoa from './pages/CadastroPessoa.jsx';
 import Login from './pages/Login.jsx';
-<<<<<<< HEAD
 import ConsultarMesas from './pages/ConsultarMesas.jsx'
-=======
-import ConsultarMesas from './pages/CadastroPessoa.jsx'
 import ListarReservas from './pages/ListarReservas.jsx';
->>>>>>> 7c28b8e2c0066d3084ab86de4506a70ad091c5a9
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 

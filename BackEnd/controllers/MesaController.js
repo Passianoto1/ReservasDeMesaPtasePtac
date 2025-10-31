@@ -24,6 +24,22 @@ class MesaController {
       })
     }
   }
+   static async buscarMesas(req, res) {
+    try {
+      const procurarMesas = await client.mesa.findMany({})
+      res.json({
+        mensagem: "Mesas Buscadas com sucesso",
+        erro: false,
+        mesas: procurarMesas
+      })
+    } catch (err) {
+      res.json({
+        mensagem: "Mesas não encontradas",
+        erro: true,
+        mensademDeErro: err
+      })
+    }
+  }
 }
 
 

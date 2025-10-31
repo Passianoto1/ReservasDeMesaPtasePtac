@@ -9,15 +9,16 @@ export default function ConsultarMesas() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3000/mesas"); // Endpoint que retorna todas as mesas
+      const response = await fetch("http://localhost:3000/mesa/mesas"); // Endpoint que retorna todas as mesas
 
       if (!response.ok) {
         throw new Error("Erro ao consultar mesas");
       }
 
       const dados = await response.json();
-      setMesas(dados);
+      setMesas(dados.mesas);
       setMensagem("");
+      console.log("teste")
     } catch (error) {
       console.error("Erro:", error);
       setMensagem("Erro ao consultar mesas. Tente novamente.");
@@ -51,16 +52,14 @@ export default function ConsultarMesas() {
           <thead>
             <tr>
               <th>Número da Mesa</th>
-              <th>Status</th>
               <th>Capacidade</th>
             </tr>
           </thead>
           <tbody>
             {mesas.map((mesa) => (
-              <tr key={mesa.numeroMesa}>
-                <td>{mesa.numeroMesa}</td>
-                <td>{mesa.statusMesa}</td>
-                <td>{mesa.capacidadeMesa}</td>
+              <tr key={mesa.id}>
+                <td>{mesa.codigo}</td>
+                <td>{mesa.n_lugares}</td>
               </tr>
             ))}
           </tbody>

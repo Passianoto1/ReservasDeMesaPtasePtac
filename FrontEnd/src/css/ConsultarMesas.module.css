@@ -3,10 +3,10 @@
   margin: 80px auto;
   text-align: center;
   font-family: Arial, sans-serif;
-  background-color: #f8f8f8;
+  background-color: #f0f0f0; /* leve cinza */
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+  box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
 }
 
 .consultar-container h2 {
@@ -18,6 +18,7 @@
   display: flex;
   justify-content: space-between;
   gap: 10px;
+  margin-bottom: 20px;
 }
 
 .btn-consultar {
@@ -28,6 +29,7 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .btn-consultar:hover {
@@ -42,6 +44,7 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .btn-limpar:hover {
@@ -51,20 +54,33 @@
 .tabela-mesas {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
+  margin-top: 10px;
+  font-size: 14px;
 }
 
 .tabela-mesas th,
 .tabela-mesas td {
-  border: 1px solid #ccc;
+  border: 1px solid #999;
   padding: 10px;
+  text-align: center;
+  color: #000; 
 }
 
 .tabela-mesas th {
-  background-color: #e9ecef;
+  background-color: #007bff; 
+  color: white;               
+}
+
+.tabela-mesas td {
+  background-color: #f1f1f1; 
+}
+
+.tabela-mesas tbody tr:hover {
+  background-color: #dbe9ff; 
 }
 
 .mensagem-erro {
   color: red;
   margin-top: 10px;
+  font-weight: bold;
 }
