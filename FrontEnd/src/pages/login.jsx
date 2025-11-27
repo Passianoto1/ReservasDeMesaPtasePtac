@@ -6,28 +6,29 @@ import Footer from "./Footer";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState('');
+  const [mensagem, setMensagem] = useState("");
 
   async function loginUser(e) {
     e.preventDefault();
+
     try {
-      const res = await fetch('http://localhost:3000/usuarios/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const res = await fetch("http://localhost:3000/usuarios/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
 
       const data = await res.json();
 
       if (res.ok) {
-        localStorage.setItem('token', data.token);
-        setMessage(`Login sucesso!`);
+        localStorage.setItem("token", data.token);
+        setMensagem("Login realizado com sucesso!");
       } else {
-        setMessage(data.message || 'Erro no login');
+        setMensagem(data.message || "Erro ao fazer login.");
       }
 
-    } catch (err) {
-      alert("Erro ao fazer login." + err);
+    } catch (error) {
+      setMensagem("Erro de conexão.");
     }
   }
 
@@ -58,7 +59,7 @@ export default function Login() {
           <button type="submit">Entrar</button>
         </form>
 
-        {message && <p>{message}</p>}
+        {mensagem && <p>{mensagem}</p>}
       </div>
 
       <Footer />

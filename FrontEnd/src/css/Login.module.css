@@ -1,21 +1,23 @@
 .login-container {
-  width: 320px;
-  margin: 120px auto;
+  width: 350px;
+  margin: 140px auto 60px auto;
   text-align: center;
+
   background: #ffff81; /* amarelo suave */
   padding: 25px;
   border-radius: 10px;
   border: 3px solid #ff5830; /* laranja */
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  box-shadow: 0 0 10px rgba(0,0,0,0.25);
   font-family: Arial, sans-serif;
 }
 
 .login-container h2 {
   margin-bottom: 20px;
-  color: #6b2d12;
+  color: #6b2d12; /* marrom */
   font-weight: 700;
 }
 
+/* Inputs iguais aos do cadastro */
 .login-container input {
   width: 100%;
   padding: 12px;
@@ -30,17 +32,28 @@
   outline: none;
 }
 
+/* Botão igual ao do cadastro, mas com sua paleta */
 .login-container button {
   width: 100%;
   padding: 12px;
-  background-color: #ff0000; /* vermelho */
+  background-color: #ff5830; /* laranja */
   color: #ffffff;
   border: none;
   border-radius: 6px;
   cursor: pointer;
   font-weight: bold;
+  font-size: 16px;
 }
 
 .login-container button:hover {
-  background-color: #ff5830; /* laranja */
+  background-color: #ff0000; /* vermelho */
+}
+
+.login-container p {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #6b2d12;
+}
+.content {
+  flex: 1;
 }

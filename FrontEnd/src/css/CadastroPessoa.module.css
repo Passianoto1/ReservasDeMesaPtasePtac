@@ -1,8 +1,10 @@
 .cadastro-container {
-  width: 320px;
-  margin: 100px auto;
+  width: 350px;
+  margin: 140px auto 60px auto;
   text-align: center;
   font-family: Arial, sans-serif;
+
+  padding-bottom: 120px; 
 }
 
 .cadastro-container h2 {
