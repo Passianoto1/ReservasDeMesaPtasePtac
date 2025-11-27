@@ -1,23 +1,15 @@
 import React from "react";
 import styles from "../css/Home.module.css";
+import Header from "./Header";
+import Footer from "./Footer";
 
 
 export default function Home() {
   return (
     <div className={styles["home-container"]}>
-      <h1>ReservaFácil 🍽️</h1>
-      <p>Bem-vindo ao seu sistema de reserva de mesas!</p>
+      <Header/>
 
-      <div className="buttons">
-        <button>Login</button>
-        <button a="">Cadastro</button>
-        <button>Perfil</button>
-        <button>Atualizar Perfil</button>
-        <button>Cadastrar Mesas</button>
-        <button>Buscar Mesas</button>
-        <button>Reservar Mesas</button>
-        <button>Minhas Reservas</button>
-      </div>
+     <Footer/>
     </div>
   );
 

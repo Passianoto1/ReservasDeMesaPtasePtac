@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styles from "../css/Login.module.css";
+import Header from "./Header";
+import Footer from "./Footer";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -9,7 +11,7 @@ export default function Login() {
   async function loginUser(e) {
     e.preventDefault();
     try {
-       const res = await fetch('http://localhost:3000/usuarios/login', {
+      const res = await fetch('http://localhost:3000/usuarios/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
@@ -24,36 +26,42 @@ export default function Login() {
         setMessage(data.message || 'Erro no login');
       }
 
-      console.log("Login:", { email, password });
-      alert("Login enviado (simulação).");
     } catch (err) {
       alert("Erro ao fazer login." + err);
     }
   }
 
   return (
-    <div className={styles["login-container"]}>
-      <h2>Login</h2>
-      <form onSubmit={loginUser}>
-        <input
-          type="email"
-          placeholder="Digite seu email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
+    <>
+      <Header />
 
-        <input
-          type="password"
-          placeholder="Digite sua senha"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
+      <div className={styles["login-container"]}>
+        <h2>Login</h2>
 
-        <button type="submit">Entrar</button>
-      </form>
-      {message && <p>{message}</p>}
-    </div>
+        <form onSubmit={loginUser}>
+          <input
+            type="email"
+            placeholder="Digite seu email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+
+          <input
+            type="password"
+            placeholder="Digite sua senha"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+
+          <button type="submit">Entrar</button>
+        </form>
+
+        {message && <p>{message}</p>}
+      </div>
+
+      <Footer />
+    </>
   );
 }

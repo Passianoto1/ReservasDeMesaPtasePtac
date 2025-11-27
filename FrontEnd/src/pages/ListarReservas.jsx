@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styles from "../css/Login.module.css";
+import Header from "./Header";
+import Footer from "./Footer";
 
 export default function ListarReservas(){
   const [reservas, setReservas] = useState([
@@ -48,6 +50,7 @@ export default function ListarReservas(){
 
   return (
     <div style={{ padding: "20px", fontFamily: "Arial" }}>
+      <Header/>
       <h2> Lista de Reservas</h2>
 
       <table border="1" cellPadding="8" cellSpacing="0" style={{ borderCollapse: "collapse", width: "100%" }}>
@@ -124,6 +127,7 @@ export default function ListarReservas(){
           </div>
         </div>
       )}
+      <Footer/>
     </div>
   );
 }

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styles from "../css/CadastroPessoa.module.css"; 
+import Header from "./Header";
+import Footer from "./Footer";
 
 export default function Cadastro() {
   const [nome, setNome] = useState("");
@@ -38,6 +40,7 @@ export default function Cadastro() {
 
   return (
     <div className={styles["cadastro-container"]}>
+      <Header/>
       <h2>Cadastro</h2>
       <form onSubmit={registerUser}>
         <input
@@ -68,6 +71,7 @@ export default function Cadastro() {
       </form>
 
       {mensagem && <p>{mensagem}</p>}
+      <Footer/>
     </div>
   );
 }
