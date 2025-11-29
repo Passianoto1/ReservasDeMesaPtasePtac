@@ -16,7 +16,7 @@ export default function Header() {
             <li><Link className={styles["navItem"]} to="/">Home</Link></li>
             <li><Link className={styles["navItem"]} to="/cardapio">Cardápio</Link></li>
             <li><Link className={styles["navItem"]} to="/login">Login</Link></li>
-            <li><Link className={styles["navItem"]} to="/cadastro">Cadastro</Link></li>
+            <li><Link className={styles["navItem"]} to="/cadastroPessoa">Cadastro</Link></li>
           </ul>
         </nav>
 

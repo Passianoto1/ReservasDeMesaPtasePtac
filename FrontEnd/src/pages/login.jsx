@@ -26,7 +26,6 @@ export default function Login() {
       } else {
         setMensagem(data.message || "Erro ao fazer login.");
       }
-
     } catch (error) {
       setMensagem("Erro de conexão.");
     }
@@ -34,35 +33,40 @@ export default function Login() {
 
   return (
     <>
-      <Header />
+      <div className={styles["page-wrapper"]}>
+        <Header />
 
-      <div className={styles["login-container"]}>
-        <h2>Login</h2>
+        <div className={styles["login-container"]}>
+          <h2>Login</h2>
 
-        <form onSubmit={loginUser}>
-          <input
-            type="email"
-            placeholder="Digite seu email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+          <form onSubmit={loginUser} style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+            
+            <input
+              type="email"
+              placeholder="Digite seu email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
 
-          <input
-            type="password"
-            placeholder="Digite sua senha"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+            <input
+              type="password"
+              placeholder="Digite sua senha"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
 
-          <button type="submit">Entrar</button>
-        </form>
+            <button type="submit">Entrar</button>
+          </form>
 
-        {mensagem && <p>{mensagem}</p>}
+          {mensagem && <p>{mensagem}</p>}
+        </div>
+
+        <footer className={styles["footer-fix"]}>
+          <Footer />
+        </footer>
       </div>
-
-      <Footer />
     </>
   );
 }

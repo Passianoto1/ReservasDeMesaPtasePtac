@@ -1,35 +1,81 @@
-.cadastro-container {
-  width: 350px;
-  margin: 140px auto 60px auto;
-  text-align: center;
-  font-family: Arial, sans-serif;
+/* fundo clarinho */
+.page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #fffcee;
+}
 
-  padding-bottom: 120px; 
+/* card central */
+.cadastro-container {
+  width: 380px;
+  margin: 120px auto 40px auto;
+  background: #fff78b;
+  padding: 28px;
+  border-radius: 14px;
+  border: 3px solid #ff5830;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
 .cadastro-container h2 {
-  margin-bottom: 20px;
-}
-
-.cadastro-container input {
-  display: block;
-  width: 100%;
+  color: #6b2d12;
   margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid #aaa;
-  border-radius: 5px;
 }
 
+/* inputs iguais ao login */
+.cadastro-container input {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto 12px auto;
+  padding: 10px 12px;
+
+  font-size: 16px;
+  border: 2px solid #fff56a;
+  border-radius: 8px;
+  background: white;
+}
+
+/* inputs lado a lado */
+.input-linha {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.input-linha input {
+  max-width: 150px;
+}
+
+/* botão igual ao login */
 .cadastro-container button {
   width: 100%;
-  padding: 10px;
-  background-color: #28a745;
+  padding: 14px;
+  background-color: #ff5830;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: bold;
   cursor: pointer;
+  transition: 0.2s;
 }
 
 .cadastro-container button:hover {
-  background-color: #1e7e34;
+  background-color: #ff2e00;
+}
+
+.cadastro-container p {
+  margin-top: 6px;
+  color: #6b2d12;
+  font-weight: bold;
+}
+
+/* footer grudado no final */
+.footer-fix {
+  margin-top: auto;
 }

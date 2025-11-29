@@ -1,59 +1,82 @@
+/* Fundo clarinho ocupando a tela inteira */
+.page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #fffcee; /* amarelo clarinho suave */
+}
+
+/* container do card */
 .login-container {
-  width: 350px;
-  margin: 140px auto 60px auto;
+  width: 380px;
+  margin: 120px auto 40px auto;
   text-align: center;
 
-  background: #ffff81; /* amarelo suave */
-  padding: 25px;
-  border-radius: 10px;
-  border: 3px solid #ff5830; /* laranja */
-  box-shadow: 0 0 10px rgba(0,0,0,0.25);
+  background: #fff78b; /* amarelo suave */
+  padding: 28px;
+  border-radius: 14px;
+  border: 3px solid #ff5830;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
   font-family: Arial, sans-serif;
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
 .login-container h2 {
-  margin-bottom: 20px;
-  color: #6b2d12; /* marrom */
-  font-weight: 700;
+  color: #6b2d12;
+  margin-bottom: 12px;
 }
 
-/* Inputs iguais aos do cadastro */
+/* Inputs proporcionais e alinhados */
 .login-container input {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 12px;
-  border: 2px solid #ffff56; /* amarelo médio */
-  border-radius: 6px;
+  width: 100%;        /* continua combinando com o botão */
+  max-width: 320px;   /* 🔥 deixa do tamanho visual do botão */
+  margin: 0 auto;     /* centraliza os inputs */
+
+  padding: 10px 12px; /* 🔥 deixa menor, proporcional ao botão */
+  font-size: 16px;
+
+  border: 2px solid #fff56a;
+  border-radius: 8px;
   background: white;
 }
 
 .login-container input:focus {
-  border-color: #ff0000; /* vermelho */
+  border-color: #ff5830;
   outline: none;
 }
 
-/* Botão igual ao do cadastro, mas com sua paleta */
+/* Botão padaria bonito */
 .login-container button {
   width: 100%;
-  padding: 12px;
-  background-color: #ff5830; /* laranja */
-  color: #ffffff;
+  padding: 14px;
+  margin-top: 10px;
+
+  background-color: #ff5830;
+  color: white;
   border: none;
-  border-radius: 6px;
-  cursor: pointer;
+  border-radius: 8px;
+  font-size: 17px;
+  letter-spacing: 0.5px;
   font-weight: bold;
-  font-size: 16px;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
 .login-container button:hover {
-  background-color: #ff0000; /* vermelho */
+  background-color: #ff2e00;
 }
 
+/* mensagem */
 .login-container p {
-  margin-top: 10px;
-  font-weight: bold;
+  margin-top: 6px;
   color: #6b2d12;
+  font-weight: bold;
 }
-.content {
-  flex: 1;
+
+/* força o footer a ficar no final */
+.footer-fix {
+  margin-top: auto;
 }

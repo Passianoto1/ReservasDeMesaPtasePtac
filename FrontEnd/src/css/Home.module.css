@@ -1,9 +1,15 @@
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
 .home-container {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   padding-top: 90px;
-  min-width: 100dvw;
+
+  width: 100%; 
 
   background-image: linear-gradient(
       rgba(255, 255, 255, 0.1), 
@@ -11,28 +17,28 @@
     ),
     url("./padocadogusspasss.jpg");
 
-  background-size: cover;   
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
-/* overlay escuro para dar contraste */
-.overlay {
+
+.hero {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  background: rgba(0, 0, 0, 0.45);
 }
 
-/* título central */
+
 .title {
   font-size: 50px;
   font-weight: 2000;
-    color: #6b2d12;; /* mesma paleta do header */
-  text-shadow: 0 3px 8px rgba(0,0,0,0.8);
+  color: #d2b874;
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.8);
+  text-align: center; /* ← reforço */
 }
+
 .content {
   flex: 1;
 }

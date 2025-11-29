@@ -10,7 +10,7 @@ const MENU_ITEMS = [
     price: 6.5,
     category: "Salgado",
     description: "Croissant folhado, crocante por fora e macio por dentro.",
-    img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80",
+    img: "https://blumskaffee.lojazap.com/_core/_uploads/24987/2024/06/103607062412dk9a9fia.webp",
   },
   {
     id: 2,
@@ -18,7 +18,7 @@ const MENU_ITEMS = [
     price: 3.5,
     category: "Salgado",
     description: "Pão de queijo quentinho, recheado com queijo Minas tradicional.",
-    img: "https://images.unsplash.com/photo-1600180758890-ea6bf2f2c9d8?auto=format&fit=crop&w=800&q=80",
+    img: "https://i0.wp.com/essareceitafunciona.com.br/wp-content/uploads/2022/07/Pao-de-queijo-Essa-Receita-Funciona-9.jpg?w=1200&ssl=1",
   },
   {
     id: 3,
@@ -26,7 +26,7 @@ const MENU_ITEMS = [
     price: 8.0,
     category: "Doce",
     description: "Fatia generosa de bolo de chocolate com cobertura cremosa.",
-    img: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80",
+    img: "https://cdn.casaeculinaria.com/wp-content/uploads/2022/10/04101905/Bolo-de-chocolate-2-768x512.webp",
   },
 ];
 
