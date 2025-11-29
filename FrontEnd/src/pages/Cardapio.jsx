@@ -1,0 +1,123 @@
+import React, { useState } from "react";
+import styles from "../css/Cardapio.module.css";
+import Header from "./Header";
+import Footer from "./Footer";
+
+const MENU_ITEMS = [
+  {
+    id: 1,
+    name: "Croissant amanteigado",
+    price: 6.5,
+    category: "Salgado",
+    description: "Croissant folhado, crocante por fora e macio por dentro.",
+    img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    id: 2,
+    name: "Pão de queijo",
+    price: 3.5,
+    category: "Salgado",
+    description: "Pão de queijo quentinho, recheado com queijo Minas tradicional.",
+    img: "https://images.unsplash.com/photo-1600180758890-ea6bf2f2c9d8?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    id: 3,
+    name: "Bolo de chocolate (fatia)",
+    price: 8.0,
+    category: "Doce",
+    description: "Fatia generosa de bolo de chocolate com cobertura cremosa.",
+    img: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80",
+  },
+];
+
+export default function Cardapio() {
+  const [query, setQuery] = useState("");
+  const [category, setCategory] = useState("Todos");
+
+  const categories = ["Todos", ...new Set(MENU_ITEMS.map(item => item.category))];
+
+  const filtered = MENU_ITEMS.filter(item => {
+    const matchesQuery = (item.name + " " + item.description)
+      .toLowerCase()
+      .includes(query.toLowerCase());
+    const matchesCategory = category === "Todos" || item.category === category;
+    return matchesQuery && matchesCategory;
+  });
+
+  return (
+    <div className={styles["page"]}>
+      <Header />
+
+      <main className={styles["menu-container"]}>
+        
+        {/* FILTRO */}
+        <div className={styles["menu-controls"]}>
+          <input
+            className={styles["menu-search"]}
+            placeholder="Buscar item..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+
+          <select
+            className={styles["menu-select"]}
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          >
+            {categories.map((c) => (
+              <option key={c} value={c}>
+                {c}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* ITENS */}
+        <section className={styles["menu-grid"]}>
+          {filtered.map(item => (
+            <article className={styles["menu-card"]} key={item.id}>
+              <img src={item.img} alt={item.name} />
+
+              <div className={styles["menu-card-body"]}>
+                <div className={styles["menu-card-header"]}>
+                  <div>
+                    <h3 className={styles["menu-card-title"]}>{item.name}</h3>
+                    <p className={styles["menu-card-category"]}>{item.category}</p>
+                  </div>
+
+                  <p className={styles["menu-card-price"]}>
+                    R$ {item.price.toFixed(2).replace(".", ",")}
+                  </p>
+                </div>
+
+                <p className={styles["menu-card-description"]}>
+                  {item.description}
+                </p>
+
+                <div className={styles["menu-buttons"]}>
+                  <button
+                    className={styles["menu-btn-add"]}
+                    onClick={() => alert(`${item.name} adicionado ao pedido!`)}
+                  >
+                    Adicionar
+                  </button>
+
+                  <button
+                    className={styles["menu-btn-details"]}
+                    onClick={() =>
+                      alert(`Detalhes: ${item.name} — ${item.description}`)
+                    }
+                  >
+                    Ver detalhes
+                  </button>
+                </div>
+              </div>
+            </article>
+          ))}
+        </section>
+      </main>
+
+      <Footer />
+    </div>
+  );
+}
