@@ -7,6 +7,7 @@ import ConsultarMesas from './pages/ConsultarMesas.jsx'
 import ListarReservas from './pages/ListarReservas.jsx';
 import Cardapio from './pages/Cardapio.jsx'
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import MinhasReservas from './pages/MinhasReservas.jsx';
 
 
 
@@ -20,6 +21,7 @@ createRoot(document.getElementById('root')).render(
     <Route path='/ConsultarMesas' element={<ConsultarMesas/>}/>
     <Route path='/ListarReservas' element={<ListarReservas/>}/>
     <Route path='/cardapio' element={<Cardapio/>}/>
+    <Route path='/reservas' element={<MinhasReservas/>}/>
     </Routes>
      </BrowserRouter>
   </StrictMode>,
